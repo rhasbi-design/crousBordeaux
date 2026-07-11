@@ -1,0 +1,64 @@
+name: check-crous
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: check-crous
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Check CROUS availability
+        id: check
+        env:
+          CROUS_URL: ${{ vars.CROUS_URL }}
+        run: python check.py
+
+      - name: Send email on change
+        if: steps.check.outputs.changed == 'true'
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          from: CROUS Watcher <${{ secrets.MAIL_USERNAME }}>
+          to: ${{ secrets.MAIL_TO }}
+          subject: "CROUS availability changed: ${{ steps.check.outputs.previous }} → ${{ steps.check.outputs.total }}"
+          body: |
+            The number of available accommodations in your CROUS search zone changed.
+
+            Previous: ${{ steps.check.outputs.previous }}
+            Now:      ${{ steps.check.outputs.total }}
+
+            Listings:
+            ${{ steps.check.outputs.items }}
+
+            Apply here: ${{ vars.CROUS_URL }}
+
+      - name: Commit state
+        run: |
+          if [ -z "$(git status --porcelain state.json)" ]; then
+            echo "no state change"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state.json
+          git commit -m "state: ${{ steps.check.outputs.previous }} -> ${{ steps.check.outputs.total }}"
+          git push
