@@ -7,64 +7,87 @@ from urllib.parse import parse_qs, urlparse
 
 CROUS_URL = os.environ["CROUS_URL"]
 STATE_FILE = Path("state.json")
+TOOL_IDS = [42, 47]
 
 parsed = urlparse(CROUS_URL)
-tool_id = int(parsed.path.strip("/").split("/")[1])
 bounds_raw = parse_qs(parsed.query)["bounds"][0]
 w, n, e, s = (float(x) for x in bounds_raw.split("_"))
+location = [{"lon": w, "lat": n}, {"lon": e, "lat": s}]
 
-payload = {
-    "idTool": tool_id,
-    "need_aggregation": True,
-    "page": 0,
-    "pageSize": 24,
-    "sector": None,
-    "occupationModes": [],
-    "location": [{"lon": w, "lat": n}, {"lon": e, "lat": s}],
-    "residence": None,
-    "equipment": [],
-    "price": {"max": 100000},
-    "area": {"min": 0},
-    "adaptedPmr": False,
-}
 
-req = urllib.request.Request(
-    f"https://trouverunlogement.lescrous.fr/api/fr/search/{tool_id}",
-    data=json.dumps(payload).encode(),
-    headers={"Content-Type": "application/json"},
-    method="POST",
-)
-with urllib.request.urlopen(req, timeout=30) as resp:
-    data = json.load(resp)
-
-results = data.get("results", {})
-total = results.get("total", {}).get("value", 0)
-items = [
-    {
-        "id": it.get("id"),
-        "address": it.get("residence", {}).get("address"),
-        "rent": it.get("rent", {}).get("amount"),
-        "bedroomCount": it.get("bedroomCount"),
+def query(tool_id):
+    payload = {
+        "idTool": tool_id,
+        "need_aggregation": True,
+        "page": 0,
+        "pageSize": 24,
+        "sector": None,
+        "occupationModes": [],
+        "location": location,
+        "residence": None,
+        "equipment": [],
+        "price": {"max": 100000},
+        "area": {"min": 0},
+        "adaptedPmr": False,
     }
-    for it in results.get("items", [])
-]
+    req = urllib.request.Request(
+        f"https://trouverunlogement.lescrous.fr/api/fr/search/{tool_id}",
+        data=json.dumps(payload).encode(),
+        headers={"Content-Type": "application/json"},
+        method="POST",
+    )
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        data = json.load(resp)
+    results = data.get("results", {})
+    total = results.get("total", {}).get("value", 0)
+    items = [
+        {
+            "tool": tool_id,
+            "id": it.get("id"),
+            "address": it.get("residence", {}).get("address"),
+            "rent": it.get("rent", {}).get("amount"),
+            "bedroomCount": it.get("bedroomCount"),
+        }
+        for it in results.get("items", [])
+    ]
+    return total, items
 
-previous_total = None
+
+totals = {}
+items = []
+for tid in TOOL_IDS:
+    t, its = query(tid)
+    totals[str(tid)] = t
+    items.extend(its)
+
+previous_totals = None
 if STATE_FILE.exists():
-    previous_total = json.loads(STATE_FILE.read_text()).get("total")
+    prev = json.loads(STATE_FILE.read_text())
+    previous_totals = prev.get("totals")
 
-changed = previous_total is not None and previous_total != total
-STATE_FILE.write_text(json.dumps({"total": total, "items": items}, indent=2, ensure_ascii=False))
+changed = previous_totals is not None and previous_totals != totals
+STATE_FILE.write_text(
+    json.dumps({"totals": totals, "items": items}, indent=2, ensure_ascii=False)
+)
 
-print(f"previous={previous_total} current={total} changed={changed}")
+
+def fmt(totals_dict):
+    if totals_dict is None:
+        return "none"
+    return ", ".join(f"tool{k}={v}" for k, v in sorted(totals_dict.items()))
+
+
+print(f"previous={fmt(previous_totals)} current={fmt(totals)} changed={changed}")
 
 gh_output = os.environ.get("GITHUB_OUTPUT")
 if gh_output:
     with open(gh_output, "a") as f:
         f.write(f"changed={'true' if changed else 'false'}\n")
-        f.write(f"previous={previous_total if previous_total is not None else 'none'}\n")
-        f.write(f"total={total}\n")
-        summary_lines = [f"- {it['address']} ({it['bedroomCount']} lit(s), {it['rent']}€)" for it in items]
+        f.write(f"previous={fmt(previous_totals)}\n")
+        f.write(f"total={fmt(totals)}\n")
+        summary_lines = [
+            f"- [tool {it['tool']}] {it['address']} ({it['bedroomCount']} lit(s), {it['rent']}€)"
+            for it in items
+        ]
         summary = "\n".join(summary_lines) if summary_lines else "(no listings)"
         f.write("items<<EOF\n" + summary + "\nEOF\n")
-
