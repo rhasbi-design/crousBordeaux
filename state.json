@@ -1,15 +1,7 @@
 {
   "totals": {
     "42": 0,
-    "47": 1
+    "47": 0
   },
-  "items": [
-    {
-      "tool": 47,
-      "id": 3248,
-      "address": "60 Avenue de PARIS 33310 LORMONT",
-      "rent": null,
-      "bedroomCount": 1
-    }
-  ]
+  "items": []
 }
