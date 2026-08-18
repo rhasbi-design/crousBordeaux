@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 import json
 import os
+import time
+import urllib.error
 import urllib.request
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
@@ -30,14 +32,26 @@ def query(tool_id):
         "area": {"min": 0},
         "adaptedPmr": False,
     }
-    req = urllib.request.Request(
-        f"https://trouverunlogement.lescrous.fr/api/fr/search/{tool_id}",
-        data=json.dumps(payload).encode(),
-        headers={"Content-Type": "application/json"},
-        method="POST",
-    )
-    with urllib.request.urlopen(req, timeout=30) as resp:
-        data = json.load(resp)
+    req_body = json.dumps(payload).encode()
+    max_attempts = 5
+    for attempt in range(1, max_attempts + 1):
+        req = urllib.request.Request(
+            f"https://trouverunlogement.lescrous.fr/api/fr/search/{tool_id}",
+            data=req_body,
+            headers={"Content-Type": "application/json"},
+            method="POST",
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                data = json.load(resp)
+            break
+        except urllib.error.HTTPError as e:
+            if attempt == max_attempts:
+                raise
+            print(
+                f"tool {tool_id}: HTTP {e.code} on attempt {attempt}/{max_attempts}, retrying..."
+            )
+            time.sleep(2 * attempt)
     results = data.get("results", {})
     total = results.get("total", {}).get("value", 0)
     items = [
