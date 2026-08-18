@@ -33,7 +33,7 @@ def query(tool_id):
         "adaptedPmr": False,
     }
     req_body = json.dumps(payload).encode()
-    max_attempts = 5
+    max_attempts = 10
     for attempt in range(1, max_attempts + 1):
         req = urllib.request.Request(
             f"https://trouverunlogement.lescrous.fr/api/fr/search/{tool_id}",
