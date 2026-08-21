@@ -1,15 +1,7 @@
 {
   "totals": {
     "42": 0,
-    "47": 1
+    "47": 0
   },
-  "items": [
-    {
-      "tool": 47,
-      "id": 715,
-      "address": "42 rue Sauteyron 33000 BORDEAUX",
-      "rent": null,
-      "bedroomCount": 1
-    }
-  ]
+  "items": []
 }
