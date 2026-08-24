@@ -1,7 +1,7 @@
 {
   "totals": {
     "42": 0,
-    "47": 2
+    "47": 3
   },
   "items": [
     {
@@ -15,6 +15,13 @@
       "tool": 47,
       "id": 3244,
       "address": "64 boulevard des frères MOGA 33800 BORDEAUX",
+      "rent": null,
+      "bedroomCount": 1
+    },
+    {
+      "tool": 47,
+      "id": 970,
+      "address": "99-101 COURS DE LA MARNE 33000 BORDEAUX",
       "rent": null,
       "bedroomCount": 1
     }
