@@ -1,9 +1,16 @@
 {
   "totals": {
     "42": 0,
-    "47": 2
+    "47": 3
   },
   "items": [
+    {
+      "tool": 47,
+      "id": 248,
+      "address": "57 RUE SAINT JAMES 33000 bordeaux",
+      "rent": null,
+      "bedroomCount": 1
+    },
     {
       "tool": 47,
       "id": 3244,
@@ -13,8 +20,8 @@
     },
     {
       "tool": 47,
-      "id": 248,
-      "address": "57 RUE SAINT JAMES 33000 bordeaux",
+      "id": 970,
+      "address": "99-101 COURS DE LA MARNE 33000 BORDEAUX",
       "rent": null,
       "bedroomCount": 1
     }
