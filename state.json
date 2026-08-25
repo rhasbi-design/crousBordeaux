@@ -1,15 +1,7 @@
 {
   "totals": {
     "42": 0,
-    "47": 1
+    "47": 0
   },
-  "items": [
-    {
-      "tool": 47,
-      "id": 248,
-      "address": "57 RUE SAINT JAMES 33000 bordeaux",
-      "rent": null,
-      "bedroomCount": 1
-    }
-  ]
+  "items": []
 }
