@@ -13,13 +13,6 @@
     },
     {
       "tool": 47,
-      "id": 569,
-      "address": "2 avenue Jean Babin 33600 PESSAC",
-      "rent": null,
-      "bedroomCount": 1
-    },
-    {
-      "tool": 47,
       "id": 351,
       "address": "29 av ABADIE 33100 BORDEAUX",
       "rent": null,
@@ -29,6 +22,13 @@
       "tool": 47,
       "id": 1606,
       "address": "32 - 36 CHEMIN DE POMEROL 33000 BORDEAUX",
+      "rent": null,
+      "bedroomCount": 1
+    },
+    {
+      "tool": 47,
+      "id": 569,
+      "address": "2 avenue Jean Babin 33600 PESSAC",
       "rent": null,
       "bedroomCount": 1
     }
