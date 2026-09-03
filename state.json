@@ -1,7 +1,7 @@
 {
   "totals": {
     "42": 0,
-    "47": 3
+    "47": 2
   },
   "items": [
     {
@@ -13,15 +13,8 @@
     },
     {
       "tool": 47,
-      "id": 569,
-      "address": "2 avenue Jean Babin 33600 PESSAC",
-      "rent": null,
-      "bedroomCount": 1
-    },
-    {
-      "tool": 47,
-      "id": 1606,
-      "address": "32 - 36 CHEMIN DE POMEROL 33000 BORDEAUX",
+      "id": 224,
+      "address": "57 RUE SAINT JAMES 33000 bordeaux",
       "rent": null,
       "bedroomCount": 1
     }
