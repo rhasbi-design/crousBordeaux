@@ -1,7 +1,7 @@
 {
   "totals": {
     "42": 0,
-    "47": 1
+    "47": 2
   },
   "items": [
     {
@@ -10,6 +10,13 @@
       "address": "717 Avenue de PARIS 33310 LORMONT",
       "rent": null,
       "bedroomCount": 1
+    },
+    {
+      "tool": 47,
+      "id": 351,
+      "address": "29 av ABADIE 33100 BORDEAUX",
+      "rent": null,
+      "bedroomCount": 2
     }
   ]
 }
