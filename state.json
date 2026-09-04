@@ -1,7 +1,7 @@
 {
   "totals": {
     "42": 0,
-    "47": 2
+    "47": 1
   },
   "items": [
     {
@@ -10,13 +10,6 @@
       "address": "717 Avenue de PARIS 33310 LORMONT",
       "rent": null,
       "bedroomCount": 1
-    },
-    {
-      "tool": 47,
-      "id": 1971,
-      "address": "10 AV PREVOST 33400 TALENCE",
-      "rent": null,
-      "bedroomCount": 4
     }
   ]
 }
