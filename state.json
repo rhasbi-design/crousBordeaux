@@ -1,7 +1,7 @@
 {
   "totals": {
     "42": 0,
-    "47": 5
+    "47": 2
   },
   "items": [
     {
@@ -13,29 +13,8 @@
     },
     {
       "tool": 47,
-      "id": 2326,
-      "address": "9 Esplanade des Antilles 33600 PESSAC",
-      "rent": null,
-      "bedroomCount": 1
-    },
-    {
-      "tool": 47,
       "id": 2915,
       "address": "20 Rue de Naudet 33170 GRADIGNAN",
-      "rent": null,
-      "bedroomCount": 1
-    },
-    {
-      "tool": 47,
-      "id": 341,
-      "address": "29 av ABADIE 33100 BORDEAUX",
-      "rent": null,
-      "bedroomCount": 1
-    },
-    {
-      "tool": 47,
-      "id": 2249,
-      "address": "9 Esplanade des Antilles 33600 PESSAC",
       "rent": null,
       "bedroomCount": 1
     }
