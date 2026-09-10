@@ -6,6 +6,13 @@
   "items": [
     {
       "tool": 47,
+      "id": 242,
+      "address": "2 Esplanade des Antilles 33600 PESSAC",
+      "rent": null,
+      "bedroomCount": 1
+    },
+    {
+      "tool": 47,
       "id": 2158,
       "address": "8 AVENUE HENRI VIZIOZ 33600 PESSAC",
       "rent": null,
@@ -22,13 +29,6 @@
       "tool": 47,
       "id": 1347,
       "address": "6 AVENUE HENRI VIZIOZ 33600 PESSAC",
-      "rent": null,
-      "bedroomCount": 1
-    },
-    {
-      "tool": 47,
-      "id": 242,
-      "address": "2 Esplanade des Antilles 33600 PESSAC",
       "rent": null,
       "bedroomCount": 1
     }
