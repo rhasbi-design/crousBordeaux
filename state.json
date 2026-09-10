@@ -1,7 +1,15 @@
 {
   "totals": {
     "42": 0,
-    "47": 0
+    "47": 1
   },
-  "items": []
+  "items": [
+    {
+      "tool": 47,
+      "id": 1707,
+      "address": "AVENUE COLLEGNO 33400 TALENCE",
+      "rent": null,
+      "bedroomCount": 1
+    }
+  ]
 }
