@@ -1,23 +1,9 @@
 {
   "totals": {
     "42": 0,
-    "47": 3
+    "47": 1
   },
   "items": [
-    {
-      "tool": 47,
-      "id": 2809,
-      "address": "5 Allée Maine de Biran 33600 PESSAC",
-      "rent": null,
-      "bedroomCount": 1
-    },
-    {
-      "tool": 47,
-      "id": 242,
-      "address": "2 Esplanade des Antilles 33600 PESSAC",
-      "rent": null,
-      "bedroomCount": 1
-    },
     {
       "tool": 47,
       "id": 1347,
