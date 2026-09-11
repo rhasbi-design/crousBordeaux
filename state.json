@@ -1,23 +1,9 @@
 {
   "totals": {
     "42": 0,
-    "47": 6
+    "47": 5
   },
   "items": [
-    {
-      "tool": 47,
-      "id": 2572,
-      "address": "10 Lucie Aubrac 33600 PESSAC",
-      "rent": null,
-      "bedroomCount": 1
-    },
-    {
-      "tool": 47,
-      "id": 242,
-      "address": "2 Esplanade des Antilles 33600 PESSAC",
-      "rent": null,
-      "bedroomCount": 1
-    },
     {
       "tool": 47,
       "id": 2282,
@@ -34,8 +20,15 @@
     },
     {
       "tool": 47,
-      "id": 2807,
-      "address": "5 Allée Maine de Biran 33600 PESSAC",
+      "id": 2572,
+      "address": "10 Lucie Aubrac 33600 PESSAC",
+      "rent": null,
+      "bedroomCount": 1
+    },
+    {
+      "tool": 47,
+      "id": 242,
+      "address": "2 Esplanade des Antilles 33600 PESSAC",
       "rent": null,
       "bedroomCount": 1
     },
