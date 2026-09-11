@@ -6,13 +6,6 @@
   "items": [
     {
       "tool": 47,
-      "id": 2282,
-      "address": "9 Esplanade des Antilles 33600 PESSAC",
-      "rent": null,
-      "bedroomCount": 1
-    },
-    {
-      "tool": 47,
       "id": 2249,
       "address": "9 Esplanade des Antilles 33600 PESSAC",
       "rent": null,
@@ -29,6 +22,13 @@
       "tool": 47,
       "id": 700,
       "address": "20 avenue de BARDANAC 33600 PESSAC",
+      "rent": null,
+      "bedroomCount": 1
+    },
+    {
+      "tool": 47,
+      "id": 2282,
+      "address": "9 Esplanade des Antilles 33600 PESSAC",
       "rent": null,
       "bedroomCount": 1
     }
