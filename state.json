@@ -1,7 +1,15 @@
 {
   "totals": {
     "42": 0,
-    "47": 0
+    "47": 1
   },
-  "items": []
+  "items": [
+    {
+      "tool": 47,
+      "id": 2572,
+      "address": "10 Lucie Aubrac 33600 PESSAC",
+      "rent": null,
+      "bedroomCount": 1
+    }
+  ]
 }
